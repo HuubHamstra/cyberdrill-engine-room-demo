@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Maritime Industrial SCADA Design System */
+
+@layer base {
+  :root {
+    /* Dark industrial theme - always dark for SCADA feel */
+    --background: 220 20% 8%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 185 70% 45%;
+    --primary-foreground: 220 20% 8%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 20% 85%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 185 65% 50%;
+    --accent-foreground: 220 20% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 185 70% 45%;
+
+    --radius: 0.5rem;
+
+    /* Status colors */
+    --safe: 142 70% 45%;
+    --warning: 38 92% 50%;
+    --danger: 0 72% 51%;
+
+    /* Custom gradients */
+    --gradient-card: linear-gradient(180deg, hsl(220 18% 14%) 0%, hsl(220 18% 10%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(185 70% 45%) 0%, hsl(195 80% 40%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 20px hsl(185 70% 45% / 0.15);
+    --shadow-danger-glow: 0 0 20px hsl(0 72% 51% / 0.3);
+  }
+
+  .dark {
+    /* Same as root - always dark */
+    --background: 220 20% 8%;
+    --foreground: 210 20% 92%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: 
+      radial-gradient(ellipse at top, hsl(220 20% 12%) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, hsl(185 70% 45% / 0.03) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .panel-card {
+    @apply bg-card border border-border rounded-lg p-5;
+    background: var(--gradient-card);
+    box-shadow: 
+      0 4px 6px -1px hsl(220 20% 5% / 0.3),
+      0 2px 4px -2px hsl(220 20% 5% / 0.2),
+      inset 0 1px 0 hsl(220 15% 25% / 0.1);
+  }
+
+  .text-safe {
+    @apply text-[hsl(var(--safe))];
+  }
+
+  .text-warning {
+    @apply text-[hsl(var(--warning))];
+  }
+
+  .text-danger {
+    @apply text-[hsl(var(--danger))];
+  }
+
+  .bg-safe {
+    @apply bg-[hsl(var(--safe))];
+  }
+
+  .bg-warning {
+    @apply bg-[hsl(var(--warning))];
+  }
+
+  .bg-danger {
+    @apply bg-[hsl(var(--danger))];
+  }
+
+  .border-danger {
+    @apply border-[hsl(var(--danger))];
+  }
+
+  .ring-danger {
+    --tw-ring-color: hsl(var(--danger));
+  }
+
+  .bg-danger\/20 {
+    background-color: hsl(var(--danger) / 0.2);
+  }
+
+  .border-warning\/30 {
+    border-color: hsl(var(--warning) / 0.3);
+  }
+
+  .bg-warning\/10 {
+    background-color: hsl(var(--warning) / 0.1);
+  }
+
+  .border-accent\/30 {
+    border-color: hsl(var(--accent) / 0.3);
+  }
+
+  .bg-accent\/10 {
+    background-color: hsl(var(--accent) / 0.1);
+  }
+}
+
+@layer utilities {
+  .animate-pulse-glow {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--danger) / 0.3), 0 0 20px hsl(var(--danger) / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--danger) / 0.5), 0 0 40px hsl(var(--danger) / 0.3);
+    }
+  }
+
+  .glow-accent {
+    text-shadow: 0 0 10px hsl(var(--accent) / 0.5);
+  }
+}
